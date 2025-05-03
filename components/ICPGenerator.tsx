@@ -18,7 +18,8 @@ export default function ICPGenerator() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://your-n8n-webhook-url.com", {
+      const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || "https://your-n8n-webhook-url.com";
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ industry, persona, region, goals })
